@@ -1,5 +1,5 @@
 
-fetch("")
+fetch("data/sliders.json")
   .then(res => res.json())
   .then(data => {
     addSliders(data.sliders);
