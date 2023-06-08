@@ -1,0 +1,96 @@
+{
+    "sliders":[
+        {
+            "name":"elevation",
+            "description": "Brush Elevation in Km : ",
+            "classes" : " order-0 ",
+            "default": 1,
+            "minimum": -8,
+            "maximum":8,
+            "display":"True"
+
+        },
+        {
+            "name":"radius",
+            "description": "Brush radius : ",
+            "classes" : " order-0 ",
+            "default": 50,
+            "minimum": 0,
+            "maximum":100,
+            "display":"True"
+        },
+        {
+            "name":"opacity",
+            "description": "Brush opacity : ",
+            "classes" : " order-0 ",
+            "default": 100,
+            "minimum": 0,
+            "maximum":100,
+            "display":"True"
+        },
+        {
+            "name":"sunRotation",
+            "description": "Sun Rotation : ",
+            "classes" : " order-2 ",
+            "default": 0,
+            "minimum": -10,
+            "maximum":10,
+            "display":"True"
+        },
+        {
+            "name":"sunElev",
+            "description": "Sun Elevation : ",
+            "classes" : " order-2 ",
+            "default": 0,
+            "minimum": -10,
+            "maximum":10,
+            "display":"True"
+        },
+        {
+            "name":"nIntensity",
+            "description": "Normals Intensity : ",
+            "classes" : " order-2 ",
+            "default": 99,
+            "minimum": 0,
+            "maximum":100,
+            "display":"True"
+        },
+        {
+            "name":"lightIntensity",
+            "description": "Light Intensity : ",
+            "classes" : " order-2 ",
+            "default": 10,
+            "minimum": 0,
+            "maximum":25,
+            "display":"True"
+
+        },
+        {
+            "name":"uselessSlider",
+            "description": "Shadows Angle : ",
+            "classes" : " order-2 ",
+            "default": 45,
+            "minimum": 0,
+            "maximum":100,
+            "display":"False"
+        },
+        {
+            "name":"shadowSoftness",
+            "description": "Shadows Softness : ",
+            "classes" : " order-2 ",
+            "default": 5,
+            "minimum": 0,
+            "maximum":100,
+            "display":"False"
+        },
+        {
+            "name":"shadowQuantitu",
+            "description": "Shadows amount : ",
+            "classes" : " order-2 ",
+            "default": 90,
+            "minimum": 0,
+            "maximum":100,
+            "display":"False"
+        }
+    ]
+}

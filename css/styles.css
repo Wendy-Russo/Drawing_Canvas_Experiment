@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+}
+html, body {
+    margin: 0; height: 100%; overflow: hidden
+    
+}
+#canvas{
+    image-rendering: -webkit-optimize-contrast; /* webkit */
+    image-rendering: -moz-crisp-edges; /* Firefox */
+}

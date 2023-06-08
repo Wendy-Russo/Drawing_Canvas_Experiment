@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body class="bg-dark" data-bs-theme="dark">
+    <header>
+
+    </header>
+    <main class="h-100">
+        <div class="container-flex text-center h-100">
+            <div class="row align-items-center h-100">
+                <section class="col-10 z-0">
+                    <canvas class="border border-5 rounded shadow" id="canvas" width="512" height="256">
+                    </canvas>
+                </section>
+                <aside class=" col-2 bg-dark-subtle  text-white shadow border rounded-4 z-1 text-start" id="parametersSection">
+                    <form class="parametersForm m-3">
+                        <h2 class="fs-4 fw-bold order-1 pb-2 mb-0 text-center">
+                            Brush Settings
+                        </h2>
+                        <ul class="lit-group row m-0 p-0 fs-6" id="sliders-container">
+                            <h2 class="fs-4 fw-bold order-1 py-2 mb-0 border-top text-center">
+                                Light Settings
+                            </h2>
+                        </ul>
+                    </form>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/canvasExp.js"></script>
+
+    <script src="/scripts/parameters.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
