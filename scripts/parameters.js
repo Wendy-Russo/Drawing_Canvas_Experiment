@@ -6,19 +6,19 @@ fetch("data/sliders.json")
   })
   .catch(error => console.log(error))
 
-let elevation,      radius,
-    opacity,        sunRot,
-    sunHeight,      nIntensity,
-    lightIntensity, uselessSlider,
-    shadowSoftness, shadowAmount,
-    size = 1,       mouseDown = false,
-    brushOpacity,   normalsIntensity,
-    sundir;
+let elevation,        radius,
+    opacity,          sunRot,
+    sunHeight,        nIntensity,
+    lightIntensity,   uselessSlider,
+    shadowSoftness,   shadowAmount,
+    size = 1,         brushOpacity,
+    normalsIntensity, sundir;
 
 const CONTAINER = document.getElementById("sliders-container");
 const VALUES = []
 
 let brushBrightness = 0.5
+
 
 function addSliders(data){
 
@@ -113,5 +113,15 @@ document.body.onmousedown = function () {
 let lastPoint;
 document.body.onmouseup = function (event) {
   mouseDown = false;
+  render()
 };
 
+document.body.ontouchstart = function () {
+  mouseDown = true;
+
+};
+
+document.body.ontouchend = function (event) {
+  mouseDown = false;
+  render()
+};

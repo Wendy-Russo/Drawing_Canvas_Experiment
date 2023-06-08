@@ -18,6 +18,42 @@ class Vector{
   }
 }
 
+let heightbase;
+let maxDist;
+let angleMax = 0;
+let mouseDown = false;
+
+function softShadows(x,y,angle,soft,tan){
+  angleMax = 0;
+  heightbase = arr2D[x][y];
+  maxDist = Math.ceil(tan * (255 - heightbase));
+  for(let xSearch = x-maxDist ; xSearch < x; xSearch++){
+    if(xSearch > 0){
+      const ANGLE = (arr2D[xSearch][y] - heightbase) /(x-xSearch)
+      if (ANGLE > angleMax){
+        angleMax = ANGLE
+      }
+    }
+  }
+
+  return 1-((Math.atan(angleMax)*180/Math.PI - angle) / soft)
+  
+}
+
+function hardShadows(baseLum,x,y,angle,tan){
+  heightbase = arr2D[x][y];
+  for(let xSearch = x-Math.ceil(tan * (255 - baseLum))  ; xSearch < x; xSearch++){
+    if(xSearch < x-10){
+      xSearch+=10
+    }
+    if(xSearch > 0 && (arr2D[xSearch][y] - baseLum) /(x-xSearch) > angle){
+        return 0
+    }
+  }
+
+  return 1
+}
+
 function normal(x,y,lightVec){
   let R;
   if(x < 511){
@@ -62,7 +98,11 @@ calcTonemap(2.2,1)
 
 let curPos;
 
+let start;
+let times = [];
+
 window.onmousemove = event => {
+  start = new Date();
   if(mouseDown && (event.target.id === "canvas")){
 
     curPos = {x : event.offsetX, y: event.offsetY}
@@ -70,27 +110,48 @@ window.onmousemove = event => {
     drawCircle(curPos.x,curPos.y,radius,brushBrightness,brushOpacity);
     render()
   }
+  times.push((new Date() - start));
+  if(times.length > 10){
+    times.reverse();
+    times.pop();
+    times.reverse();
+  }
+  //console.log(Math.round(1000/average(times)))
 }
 
 function drawCircle(centerX,centerY,radius,b,a){
   for(let x = centerX-radius; x < centerX+radius;x++){
     for(let y = centerY-radius; y < centerY+radius;y++){
-      const DIST = distance2D(x,y,centerX,centerY)/radius
-      if(x > -1 && DIST < 1 && x < 512){
+      const DIST = (distance2D(x,y,centerX,centerY)/radius)
+      if(x > -1 && DIST < 1 && x < 512 ){
+
         arr2D[x][y] = lerp(arr2D[x][y],(b*255),(1-DIST)*(a))
       }
     }
   }
 }
 
+const sunAngle = Math.tan(45/180*Math.PI);
+const halfSoft = Math.tan(2.5/180*Math.PI)*4;
+const ANGTAN = Math.tan(sunAngle)
+let dot,i,toned;
+let arrX,arrY;
+
 function render(){
   for(let x = 0 ; x < CANVAS.width; x++){
+    arrX = arr2D[x]
     for(let y = 0 ; y < CANVAS.height; y++){
-      let relativeBrightness = remap(arr2D[x][y],0,255,0.05,1)
-      const DOT = normal(x,y,sundir)*relativeBrightness;
-      const i = (y * CANVAS.width + x)*4
-      const TONED = TONEMAPPED[Math.round(DOT*255)]*255;
-      data1.data[i] = data1.data[i+1] = data1.data[i+2] = TONED
+      arrY = arrX[y]
+      if(mouseDown){
+        dot = normal(x,y,sundir) * minMax(hardShadows(arrY,x,y,sunAngle,ANGTAN),0.05,1)
+        
+      }
+      else{
+        dot = normal(x,y,sundir) * minMax(softShadows(x,y,45,5,ANGTAN),0.05,1)
+      }
+      i = (y * CANVAS.width + x)*4
+      toned = TONEMAPPED[Math.round(dot*255)]*255;
+      data1.data[i] = data1.data[i+1] = data1.data[i+2] = toned
     }
   } 
   CTX.putImageData(data1,0,0)

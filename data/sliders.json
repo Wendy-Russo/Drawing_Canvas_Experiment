@@ -2,7 +2,7 @@
     "sliders":[
         {
             "name":"elevation",
-            "description": "Brush Elevation in Km : ",
+            "description": "Brush Elevation : ",
             "classes" : " order-0 ",
             "default": 1,
             "minimum": -8,

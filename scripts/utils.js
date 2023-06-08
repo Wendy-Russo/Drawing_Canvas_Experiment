@@ -14,3 +14,7 @@ function lerp (value1, value2, factor){
 function minMax(value,min,max){
     return( Math.max(Math.min(max,value),min) )
 }
+
+function average(array){
+    return(array.reduce((a, b) => a + b) / array.length);
+}
