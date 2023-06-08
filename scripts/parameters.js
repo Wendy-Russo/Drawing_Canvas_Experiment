@@ -110,18 +110,10 @@ document.body.onmousedown = function () {
   mouseDown = true;
 
 };
+
 let lastPoint;
+
 document.body.onmouseup = function (event) {
-  mouseDown = false;
-  render()
-};
-
-document.body.ontouchstart = function () {
-  mouseDown = true;
-
-};
-
-document.body.ontouchend = function (event) {
   mouseDown = false;
   render()
 };

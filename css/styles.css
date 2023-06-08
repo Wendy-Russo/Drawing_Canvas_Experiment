@@ -8,4 +8,5 @@ html, body {
 #canvas{
     image-rendering: -webkit-optimize-contrast; /* webkit */
     image-rendering: -moz-crisp-edges; /* Firefox */
+    touch-action: none;
 }
