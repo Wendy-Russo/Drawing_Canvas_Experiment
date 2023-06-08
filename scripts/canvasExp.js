@@ -101,7 +101,7 @@ let curPos;
 let start;
 let times = [];
 
-window.onmousemove = event => {
+function onMove(event){
   start = new Date();
   if(mouseDown && (event.target.id === "canvas")){
 
@@ -117,6 +117,14 @@ window.onmousemove = event => {
     times.reverse();
   }
   //console.log(Math.round(1000/average(times)))
+}
+
+window.onmousemove = event => {
+  onMove(event)
+}
+
+window.ontouchmove = event => {
+  onMove(event)
 }
 
 function drawCircle(centerX,centerY,radius,b,a){
