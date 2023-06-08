@@ -60,10 +60,8 @@ function calcTonemap(gamma,light){
 
 calcTonemap(2.2,1)
 
-let curPos, prevPos;
-let times = [];
+let curPos;
 
-let LASTTIME
 window.onmousemove = event => {
   if(mouseDown && (event.target.id === "canvas")){
 
@@ -71,14 +69,6 @@ window.onmousemove = event => {
 
     drawCircle(curPos.x,curPos.y,radius,brushBrightness,brushOpacity);
     render()
-
-    const LAST = new Date() - START
-    if(times.length >= 500){
-      times.reverse();
-      times.pop()
-      times.reverse();
-    }
-
   }
 }
 
