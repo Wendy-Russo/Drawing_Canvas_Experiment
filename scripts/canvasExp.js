@@ -112,11 +112,11 @@ function render(){
     arrX = arr2D[x]
     for(let y = 0 ; y < CANVAS.height; y++){
       arrY = arrX[y]
-      if(mouseDown){
+      if((mouseDown)){
         dot = normal(x,y,sundir) * minMax(hardShadows(arrY,x,y,sunAngle,ANGTAN),0.05,1)
         
       }
-      else{
+      else if (!mouseDown){
         dot = normal(x,y,sundir) * minMax(softShadows(x,y,45,5,ANGTAN),0.05,1)
       }
       i = (y * CANVAS.width + x)*4
@@ -129,7 +129,7 @@ function render(){
 
 function onmove(position,event){
   
-  if(event.target.id === "canvas" && (mouseDown || (/Android|iPhone/i.test(navigator.userAgent))) && prevpos !== position){
+  if(event.target.id === "canvas" && (mouseDown) && prevpos !== position){
 
     drawCircle(position.x,position.y,radius,brushBrightness,brushOpacity);
     render()
@@ -146,10 +146,8 @@ function onmove(position,event){
   //console.log(Math.round(1000/average(times)))
 }
 
-console.log(0)
 
 onpointermove = event => {
-  console.log(0)
   curPos = {x : Math.round(event.offsetX), y: Math.round(event.offsetY)}
   onmove(curPos,event)
 }

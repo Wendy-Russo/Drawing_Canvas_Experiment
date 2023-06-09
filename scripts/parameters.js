@@ -117,3 +117,12 @@ document.body.onmouseup = function (event) {
   mouseDown = false;
   render()
 };
+
+document.body.ontouchend = event =>{
+  mouseDown = false;
+  render()
+}
+
+document.body.ontouchstart = event =>{
+  mouseDown = true;
+}
