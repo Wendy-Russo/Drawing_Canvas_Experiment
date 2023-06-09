@@ -11,8 +11,11 @@ let elevation,        radius,
     sunHeight,        nIntensity,
     lightIntensity,   uselessSlider,
     shadowSoftness,   shadowAmount,
-    size = 1,         brushOpacity,
+    brushOpacity,     size = 1,
     normalsIntensity, sundir;
+
+CANVAS.style.imageRendering = "pixelated";
+
 
 const CONTAINER = document.getElementById("sliders-container");
 const VALUES = []

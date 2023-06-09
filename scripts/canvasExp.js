@@ -116,7 +116,7 @@ function render(){
         dot = normal(x,y,sundir) * minMax(hardShadows(arrY,x,y,sunAngle,ANGTAN),0.05,1)
         
       }
-      else if (!mouseDown){
+      else{
         dot = normal(x,y,sundir) * minMax(softShadows(x,y,45,5,ANGTAN),0.05,1)
       }
       i = (y * CANVAS.width + x)*4
