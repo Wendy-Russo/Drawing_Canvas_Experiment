@@ -33,6 +33,145 @@
                             <h2 class="fs-4 fw-bold order-1 py-2 mb-0 border-top text-center">
                                 Light Settings
                             </h2>
+                            <li class="list-group-item order-0 ">
+                                <label class="form-label mb-0" for="elevation">
+                                    Brush Elevation :  
+                                </label>
+                                <output name="elevation-result" for="elevation">
+                                    1
+                                </output>
+                                <input id="elevation" class="form-range" type="range" name="elevation" value="1" min="-8" max="8">
+                            </li>
+                            <li class="list-group-item order-0 ">
+                                <label class="form-label mb-0" for="radius">
+                                    Brush radius :  
+                                </label>
+                                <output name="radius-result" for="radius">
+                                    50
+                                </output>
+                                <input id="radius" class="form-range" type="range" name="radius" value="50" max="100">
+                            </li>
+                            <li class="list-group-item order-0 ">
+                                <label class="form-label mb-0" for="opacity">
+                                    Brush opacity :  
+                                </label>
+                                <output name="opacity-result" for="opacity">
+                                    100
+                                </output>
+                                <input id="opacity" class="form-range" type="range" name="opacity" value="100" max="100">
+                            </li>
+                            <li class="list-group-item order-2 ">
+                                <label class="form-label mb-0" for="sunRotation">
+                                    Sun Rotation :  
+                                </label>
+                                <output name="sunRotation-result" for="sunRotation">
+                                    0
+                                </output>
+                                <input id="sunRotation" class="form-range" type="range" name="sunRotation" min="-10" max="10">
+                            </li>
+                            <li class="list-group-item order-2 ">
+                                <label class="form-label mb-0" for="sunElev">
+                                    Sun Elevation :  
+                                <output name="sunElev-result" for="sunElev">
+                                    5
+                                </output>
+                                </label>
+                                <input id="sunElev" class="form-range" type="range" value="5" name="sunElev" min="-10" max="10">
+                            </li>
+                            <li class="list-group-item order-2 ">
+                                <label class="form-label mb-0" for="nIntensity">
+                                    Normals Intensity :  
+                                </label>
+                                <output name="nIntensity-result" for="nIntensity">
+                                    99
+                                </output>
+                                <input id="nIntensity" class="form-range" type="range" name="nIntensity" value="99" max="100">
+                            </li>
+                            <li class="list-group-item order-2 ">
+                                <label class="form-label mb-0" for="lightIntensity">
+                                    Light Intensity :  
+                                </label>
+                                <output name="lightIntensity-result" for="lightIntensity">
+                                    100
+                                </output>
+                                <input id="lightIntensity" class="form-range" type="range" name="lightIntensity" value="100" max="500">
+                            </li>
+                            <li class="list-group-item order-2 ">
+                                <label class="form-label mb-0" for="grassColor">
+                                    Grass Color :  
+                                </label>
+                                <input id="grassColor" class="form-range" type="color" name="grassColor">
+                            </li>
+                            <li class="list-group-item order-2 ">
+                                <label class="form-label mb-0" for="minLight">
+                                    Minimum Light :  
+                                </label>
+                                <output name="minLight-result" for="minLight">
+                                    3
+                                </output>
+                                <input id="minLight" class="form-range" type="range" name="minLight" value="3" max="100">
+                            </li>
+                            <li class="list-group-item order-2 ">
+                                <label class="form-label mb-0" for="color">
+                                    Main Color
+                                </label>
+                                <div class="colorPalette" id="paletteContainer">
+                                    <button type="button" class="button-nes nes-col-0"></button>
+                                    <button type="button" class="button-nes nes-col-1"></button>
+                                    <button type="button" class="button-nes nes-col-2"></button>
+                                    <button type="button" class="button-nes nes-col-3"></button>
+                                    <button type="button" class="button-nes nes-col-4"></button>
+                                    <button type="button" class="button-nes nes-col-5"></button>
+                                    <button type="button" class="button-nes nes-col-6"></button>
+                                    <button type="button" class="button-nes nes-col-7"></button>
+                                    <button type="button" class="button-nes nes-col-8"></button>
+                                    <button type="button" class="button-nes nes-col-9"></button>
+                                    <button type="button" class="button-nes nes-col-10"></button>
+                                    <button type="button" class="button-nes nes-col-11"></button>
+                                    <button type="button" class="button-nes nes-col-12"></button>
+                                    <button type="button" class="button-nes nes-col-13"></button>
+                                    <button type="button" class="button-nes nes-col-14"></button>
+                                    <button type="button" class="button-nes nes-col-15"></button>
+                                    <button type="button" class="button-nes nes-col-16"></button>
+                                    <button type="button" class="button-nes nes-col-17"></button>
+                                    <button type="button" class="button-nes nes-col-18"></button>
+                                    <button type="button" class="button-nes nes-col-19"></button>
+                                    <button type="button" class="button-nes nes-col-20"></button>
+                                    <button type="button" class="button-nes nes-col-21"></button>
+                                    <button type="button" class="button-nes nes-col-22"></button>
+                                    <button type="button" class="button-nes nes-col-23"></button>
+                                    <button type="button" class="button-nes nes-col-24"></button>
+                                    <button type="button" class="button-nes nes-col-25"></button>
+                                    <button type="button" class="button-nes nes-col-26"></button>
+                                    <button type="button" class="button-nes nes-col-27"></button>
+                                    <button type="button" class="button-nes nes-col-28"></button>
+                                    <button type="button" class="button-nes nes-col-29"></button>
+                                    <button type="button" class="button-nes nes-col-30"></button>
+                                    <button type="button" class="button-nes nes-col-31"></button>
+                                    <button type="button" class="button-nes nes-col-32"></button>
+                                    <button type="button" class="button-nes nes-col-33"></button>
+                                    <button type="button" class="button-nes nes-col-34"></button>
+                                    <button type="button" class="button-nes nes-col-35"></button>
+                                    <button type="button" class="button-nes nes-col-36"></button>
+                                    <button type="button" class="button-nes nes-col-37"></button>
+                                    <button type="button" class="button-nes nes-col-38"></button>
+                                    <button type="button" class="button-nes nes-col-39"></button>
+                                    <button type="button" class="button-nes nes-col-40"></button>
+                                    <button type="button" class="button-nes nes-col-41"></button>
+                                    <button type="button" class="button-nes nes-col-42"></button>
+                                    <button type="button" class="button-nes nes-col-43"></button>
+                                    <button type="button" class="button-nes nes-col-44"></button>
+                                    <button type="button" class="button-nes nes-col-45"></button>
+                                    <button type="button" class="button-nes nes-col-46"></button>
+                                    <button type="button" class="button-nes nes-col-47"></button>
+                                    <button type="button" class="button-nes nes-col-48"></button>
+                                    <button type="button" class="button-nes nes-col-49"></button>
+                                    <button type="button" class="button-nes nes-col-50"></button>
+                                    <button type="button" class="button-nes nes-col-51"></button>
+
+                                    
+                                </div>
+                            </li>
                         </ul>
                     </form>
                 </aside>
