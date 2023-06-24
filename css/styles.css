@@ -214,5 +214,5 @@ html, body {
     flex-direction: column;
     flex-wrap: wrap;
     min-width: 100%;
-    min-height: 30vw;
+    max-width: 5rem;
 }
