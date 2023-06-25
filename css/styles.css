@@ -207,6 +207,7 @@ html, body {
 }
 
 .colorPalette{
+    overflow: hidden;
     width: 13rem;
     height: 4rem;
     margin: 0;

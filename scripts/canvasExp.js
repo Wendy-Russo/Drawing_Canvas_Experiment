@@ -60,9 +60,6 @@ function render(){
   //console.log("sunHeight",50/(VALUES["sundir"].normalizedFlat().y))
   //console.log("dist",distance2D(0,0,-VALUES["sunGround"].x,-VALUES["sunGround"].z))
   let sunh = VALUES["sundir"].normalizedFlat().y
-
-  let START = new Date()
-
   mapmax = 0;
   for(let x = 0 ; x < CANVAS.width; x++){
     //arrX = arr2D[x]
@@ -110,7 +107,7 @@ function render(){
       let tonedR = TONEMAPPED[Math.ceil(dot*255)]*  ((color > waterHeight) ? landCOL[0] : waterCOLR)
       let tonedG = TONEMAPPED[Math.ceil(dot*255)]*  ((color > waterHeight) ? landCOL[1] : waterCOLG)
       let tonedB = TONEMAPPED[Math.ceil(dot*255)]*  ((color > waterHeight) ? landCOL[2] : waterCOLB)
-      //d.log(slope)
+
       data1.data[i] = tonedR
       data1.data[i+1] = tonedG
       data1.data[i+2] = tonedB
