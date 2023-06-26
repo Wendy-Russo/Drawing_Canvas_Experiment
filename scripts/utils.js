@@ -11,7 +11,15 @@ function lerp (value1, value2, factor){
 }
 
 function minMax(value,min,max){
-  return( Math.max(Math.min(max,value),min) )
+  if(value<min){
+    return min
+  }
+  else if(value > max){
+    return max
+  }
+  else{
+    return value
+  }
 }
 
 function average(array){

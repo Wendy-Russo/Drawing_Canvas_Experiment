@@ -8,7 +8,6 @@ const VALUES = {
   opacity : 0,
   sunRotation : 2,
   sunElev : 2,
-  nIntensity : 0,
   lightIntensity : 0,
   grassColor : [255,255,255],
   sundir : 0,
@@ -27,11 +26,10 @@ function convertValues(){
   let sunZ = Math.sin(alpha) * Math.sin(beta);
 
   VALUES["sundir"] = new Vector(sunX,sunY,sunZ).normalized()
-  VALUES["sunAlpha"] = alpha;
+  VALUES["sunAlpha"] = alpha*180/Math.PI + 90;
 
   VALUES["sunGround"] = new Vector(sunX,0,sunZ).normalized()
-  calcTonemap(2.2,parseInt(VALUES["lightIntensity"]))
-  
+  calcTonemap(2.2,parseInt(VALUES["lightIntensity"]))  
 }
 
 let size = 2;
