@@ -14,7 +14,7 @@ let shadowArr0 = new Array()
 let DATA;
 let base_image = new Image();
 
-base_image.src = 'scripts/clouds.png';
+base_image.src = '/scripts/clouds.png';
 
 base_image.addEventListener("load", () => {
   CTX.drawImage(base_image, 0, 0);
