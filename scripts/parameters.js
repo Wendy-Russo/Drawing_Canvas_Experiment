@@ -1,6 +1,7 @@
 
 const CONTAINER = document.getElementById("sliders-container");
 let sundir;
+let dragging = false;
 
 const VALUES = {
   elevation : 0,
@@ -12,8 +13,9 @@ const VALUES = {
   grassColor : [255,255,255],
   sundir : 0,
   sunGround : 0,
-  sulAlpha : 0
-
+  sulAlpha : 0,
+  brushMode : "regular",
+  ambiantLight : 5
 }
 
 function convertValues(){
@@ -29,31 +31,57 @@ function convertValues(){
   VALUES["sunAlpha"] = alpha*180/Math.PI + 90;
 
   VALUES["sunGround"] = new Vector(sunX,0,sunZ).normalized()
-  calcTonemap(2.2,parseInt(VALUES["lightIntensity"]))  
 }
 
-let size = 2;
-CANVAS.style.transform = `scale(${size})`;
-
-let brushBrightness = 0.5
+CANVAS.style.transform = `scale(${settings.controls.defaultZoom}) translate(${settings.controls.posX}px,${settings.controls.posY}px)`;
 
 onwheel = (e) => {
-  e.deltaY < 0 ? (size += 0.5) : (size -= 0.5);
-  size = minMax(size, 0.1, 10);
-  CANVAS.style.transform = `scale(${size})`;
+  e.deltaY < 0 ? (settings.controls.defaultZoom += settings.controls.zoomSpeed) : (settings.controls.defaultZoom -= settings.controls.zoomSpeed);
+  settings.controls.defaultZoom = minMax(settings.controls.defaultZoom, settings.controls.minZoom, settings.controls.maxZoom);
+  CANVAS.style.transform = `scale(${settings.controls.defaultZoom}) translate(${settings.controls.posX}px,${settings.controls.posY}px)`
   CANVAS.style.imageRendering = "pixelated";
 };
+let newX = settings.controls.posX,
+newY = settings.controls.posY;
 
-document.body.onmousedown = function () {
-  mouseDown = true;
+document.body.onmousedown = function(e){
+  
+  if(e.button === 0){
+    mouseDown = true;
+  }
+  else if(e.button === 1){
+    
+    dragging = true;
+
+    document.body.onmousemove = function(j){
+      if(dragging){
+        
+        newX = settings.controls.posX + (j.clientX - e.clientX)
+        newY = settings.controls.posY + (j.clientY - e.clientY)
+        
+        CANVAS.style.transform = `scale(${settings.controls.defaultZoom}) translate(${newX}px,${newY}px)`;
+      }
+    }
+
+  }
+  
 
 };
+
 
 let lastPoint;
 
 document.body.onmouseup = function (event) {
-  mouseDown = false;
-  render()
+  
+  if(event.button === 0){
+    mouseDown = false;
+    render()
+  }
+  if(event.button === 1){
+    settings.controls.posX = newX
+    settings.controls.posY = newY  
+    dragging = false
+  }
 };
 
 document.body.ontouchend = event =>{
@@ -85,6 +113,7 @@ for(let i = 0 ; i < container.children.length; i++){
           VALUES[`${inputName}`] = inputAtt.value
 
           convertValues()
+          console.log(VALUES[`${inputName}`])
         }
       })
     }
@@ -103,111 +132,33 @@ for(let i = 0 ; i < COLDIV.children.length; i++){
   })
 }
 
-
-document.getElementsByClassName("nes-col-38")[0].click()
-
-
-/*
-let elevation,        radius,
-    opacity,          sunRot,
-    sunHeight,        nIntensity,
-    lightIntensity,   uselessSlider,
-    shadowSoftness,   shadowAmount,
-    brushOpacity,     size = 1,
-    normalsIntensity, sundir,
-    grassColor;
-
-CANVAS.style.imageRendering = "pixelated";
-
-function addSliders(data){
-
-  for(let i = 0 ; i < data.length; i++){
-    const SLIDER = data[i];
-    if(SLIDER.display === "True"){
-      const li = document.createElement('li');
-      li.classList = "list-group-item" + SLIDER.classes
-
-      const LABEL = document.createElement('label');
-      LABEL.classList = "form-label mb-0";
-      LABEL.htmlFor = SLIDER.name;
-      LABEL.append(SLIDER.description + " ");
-
-      const INPUT = document.createElement('input');
-      INPUT.id = SLIDER.name;
-      INPUT.classList = "form-range"
-      INPUT.type = SLIDER.type
-      INPUT.name = SLIDER.name;
-
-      if(SLIDER.default){
-        INPUT.setAttribute("value",SLIDER.default)
-        INPUT.value = SLIDER.default
-      }
-
-      if(SLIDER.type === "range"){
-        SLIDER.minimum && (INPUT.min = SLIDER.minimum);
-        SLIDER.maximum && (INPUT.max = SLIDER.maximum);
-
-        const OUTPUT = document.createElement('output');
-        OUTPUT.append(SLIDER.default);
-        OUTPUT.setAttribute("name",SLIDER.name+"-result")
-        OUTPUT.setAttribute("for",SLIDER.name)
-        OUTPUT.name = SLIDER.name+"-result";
-
-        li.appendChild(OUTPUT);
-
-      }
-      
-
-      li.appendChild(LABEL);
-      li.appendChild(INPUT);
+const BRUSH_REGULAR = document.getElementById("button-regular")
+const BRUSH_SMOOTH = document.getElementById("button-smooth")
+const BRUSH_SUPER_SMOOTH = document.getElementById("button-supersmooth")
+const BRUSH_RIVER = document.getElementById("button-river")
 
 
-      CONTAINER.appendChild(li)
 
-      VALUES[i] = SLIDER.default;
-      
-      (SLIDER.type === "range") && updateSlider(SLIDER.name,i);
-    }
-  }
-  updateValues();
-}
+BRUSH_REGULAR.addEventListener("click", function(e){
+  e.preventDefault()
+  VALUES.brushMode = "regular"
+  console.log("regular")
+})
 
-function updateSlider(id,i)
-{
-  document.getElementById(id).addEventListener("input", function(){
-    VALUES[i] = parseInt(document.getElementById(id).value)
-    updateValues();
-    document.querySelector(`output[for='${id}']`).innerHTML = VALUES[i];
-  })
-}
+BRUSH_SMOOTH.addEventListener("click", function(e){
+  e.preventDefault()
+  VALUES.brushMode = "smooth"
+  console.log("smooth")
+})
 
-function updateValues()
-{
-  elevation = VALUES[0];
-  radius = VALUES[1];
-  opacity = VALUES[2];
-  sunRot = VALUES[3];
-  sunHeight = VALUES[4];
-  nIntensity = VALUES[5];
-  lightIntensity = VALUES[6];
-  grassColor = VALUES[7];
-  uselessSlider = VALUES[8];  
-  shadowSoftness = VALUES[9];
-  shadowAmount = VALUES[10];
-  brushBrightness = remap(VALUES[0],-8,8,0,1)
-  brushOpacity = VALUES[2]/100
-  normalsIntensity = remap(nIntensity,0,100,0.125,0)
-  calcTonemap(2.2,lightIntensity)
-  let alpha = remap(VALUES[4],-10,10,-Math.PI,0)
-  let beta = remap(VALUES[3],-10,10,-Math.PI,Math.PI)
-  let sunX = Math.sin(alpha) * Math.cos(beta);
-  let sunY = Math.cos(alpha);
-  let sunZ = Math.sin(alpha) * Math.sin(beta);
+BRUSH_SUPER_SMOOTH.addEventListener("click", function(e){
+  e.preventDefault()
+  VALUES.brushMode = "supersmooth"
+  console.log("supersmooth")
+})
 
-  sundir = new Vector(sunX,sunY,sunZ).normalized()
-  render()
-
-
-  console.log(grassColor)
-}
-*/
+BRUSH_RIVER.addEventListener("click", function(e){
+  e.preventDefault()
+  VALUES.brushMode = "river"
+  console.log("river")
+})

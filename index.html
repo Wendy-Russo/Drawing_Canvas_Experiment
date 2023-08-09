@@ -24,7 +24,7 @@
                     <canvas class="border border-5 rounded shadow" id="canvas" width="512" height="256">
                     </canvas>
                 </section>
-                <aside class=" col-xl-2 col-md-3 bg-dark-subtle  text-white shadow border rounded-4 z-1 text-start" id="parametersSection">
+                <aside class=" col-xl-2 col-md-3 bg-dark-subtle text-white shadow border rounded-4 z-1 text-start" id="parametersSection">
                     <form class="parametersForm m-3">
                         <h2 class="fs-4 fw-bold order-1 pb-2 mb-0 text-center">
                             Brush Settings
@@ -38,9 +38,9 @@
                                     Brush Elevation :  
                                 </label>
                                 <output name="elevation-result" for="elevation">
-                                    1
+                                    16
                                 </output>
-                                <input id="elevation" class="form-range" type="range" name="elevation" value="1" min="-8" max="8">
+                                <input id="elevation" class="form-range" type="range" name="elevation" value="0" min="-16" max="16">
                             </li>
                             <li class="list-group-item order-0 ">
                                 <label class="form-label mb-0" for="radius">
@@ -65,9 +65,9 @@
                                     Sun Rotation :  
                                 </label>
                                 <output name="sunRotation-result" for="sunRotation">
-                                    2
+                                    7
                                 </output>
-                                <input id="sunRotation" class="form-range" type="range" name="sunRotation" value="2" min="-10" max="10">
+                                <input id="sunRotation" class="form-range" type="range" name="sunRotation" value="7" min="-10" max="10">
                             </li>
                             <li class="list-group-item order-2 ">
                                 <label class="form-label mb-0" for="sunElev">
@@ -83,9 +83,18 @@
                                     Light Intensity :  
                                 </label>
                                 <output name="lightIntensity-result" for="lightIntensity">
-                                    100
+                                    10
                                 </output>
-                                <input id="lightIntensity" class="form-range" type="range" name="lightIntensity" value="50" max="100">
+                                <input id="lightIntensity" class="form-range" type="range" name="lightIntensity"  value="10" max="50">
+                            </li>
+                            <li class="list-group-item order-2 ">
+                                <label class="form-label mb-0" for="ambiantLight">
+                                    Ambiant Light :  
+                                </label>
+                                <output name="ambiantLight-result" for="ambiantLight">
+                                    5
+                                </output>
+                                <input id="ambiantLight" class="form-range" type="range" name="ambiantLight"  value="5" max="100">
                             </li>
                             <li class="list-group-item order-2 ">
                                 <label class="form-label mb-0" for="color">
@@ -148,6 +157,25 @@
                                     
                                 </div>
                             </li>
+                            <li class="list-group-item order-2 ">
+                                <label class="form-label mb-0" for="brushSelect">
+                                    Pick Brush Type
+                                </label>
+                                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                                    <button class="btn rounded-pill btn-dark border border-1" id="button-regular">
+                                        Regular
+                                    </button>
+                                    <button class="btn rounded-pill btn-dark border border-1" id="button-smooth">
+                                        Smooth
+                                    </button>
+                                    <button class="btn rounded-pill btn-dark border border-1" id="button-supersmooth">
+                                        Super Smooth
+                                    </button>
+                                    <button class="btn rounded-pill btn-dark border border-1" id="button-river">
+                                        Erosion
+                                    </button>
+                                </div>
+                            </li>
                         </ul>
                     </form>
                 </aside>
@@ -157,9 +185,13 @@
     <footer>
 
     </footer>
+    <script src="./scripts/settings.js"></script>
     <script src="./scripts/utils.js"></script>
+    <script src="./scripts/graphics.js"></script>
     <script src="./scripts/canvasExp.js"></script>
     <script src="./scripts/parameters.js"></script>
+    <script src="./scripts/erosion.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
