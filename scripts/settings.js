@@ -1,12 +1,16 @@
 const settings =
 {
-    "graphics" :
+    graphics :
     {
-      "ambientLight" : 0.02,
-      "specularStrength" : 1,
-      "shininess" : 4,
-      "waterLevel" : 126,
-      "defaultPalette" : 
+      brushMode: "regular",
+      ambientLight : 5,
+      specularStrength : 32,
+      shininess : 4,
+      waterLevel : 126,
+      sunRotation: 7,
+      sunElev: 5,
+      lightIntensity: 10,
+      defaultPalette : 
       [
         {
           min: {
