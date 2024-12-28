@@ -17,7 +17,7 @@ let mapmax = 0;
 
 
 let size = 128;
-let points = 4;
+let points = 16;
 let opacity = 1;
 
 for(let i = 0 ; i < 7; i++) {
@@ -28,9 +28,9 @@ for(let i = 0 ; i < 7; i++) {
     drawCircle(arr2D, x, y, Math.round(size), brightness,opacity);
   }
 
-  opacity *= 0.5;
+  opacity *= 0.33;
   size /= 2;
-  points *= 3;
+  points *= 2;
 }
 
 //updatemin and max
@@ -52,6 +52,22 @@ for(let x = 0; x < 512; x++) {
 }
 render();
 
+//Simulate rain
+
+setInterval(() => {
+  const i = setInterval(() => {
+    let x = Math.floor(Math.random() * 512);
+    let y = Math.floor(Math.random() * 256);
+    particleErosion(x,y,3)
+  },20);
+
+
+  render();
+  return(() => {
+    clearInterval(i);
+  })
+
+},1000);
 
 function drawCircle(image, centerX, centerY, radius, b, a = 1) {
   if (radius === 0.5 && image[centerX] && image[centerX][centerY]) {

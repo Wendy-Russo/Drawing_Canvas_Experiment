@@ -8,7 +8,7 @@ const settings =
       shininess : 4,
       waterLevel : 126,
       sunRotation: 7,
-      sunElev: 5,
+      sunElev:0,
       lightIntensity: 10,
       defaultPalette : 
       [

@@ -110,12 +110,12 @@ function render() {
       if (mouseDown && SLOPE) {
         shadows = rotShadowsHard(x, y, sunh);
       } else {
-        shadows = rotShadowsSoft(x, y, VALUES["sunAlpha"], 5);
+        shadows = rotShadowsSoft(x, y, VALUES["sunAlpha"], 10);
         AO = getAOBlur(x, y, 5);
       }
 
-      shadows = remap(color, 0, 128, 1, shadows);
-      const diffuse = remap(color, 0, 128, 1, getDiffuse(x, y));
+      shadows = remap(color, 120, 128, 1, shadows);
+      const diffuse = remap(color, 120, 128, 1, getDiffuse(x, y));
       const toned = tonemap(phong(x, y, shadows, AO, diffuse), 2.2);
       const colorInt = Math.round(minMax(color, 0, 255));
       let rgbCol = colorsArray[colorInt];
@@ -138,7 +138,6 @@ function render() {
     }
   }
 
-  console.log("1");
   CTX.putImageData(data1, 0, 0);
 }
 
