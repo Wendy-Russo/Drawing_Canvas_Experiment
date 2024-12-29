@@ -33,41 +33,10 @@ for(let i = 0 ; i < 7; i++) {
   points *= 2;
 }
 
-//updatemin and max
-
-for(let x = 0; x < 512; x++) {
-  for(let y = 0; y < 256; y++) {
-    mapmax = Math.max(mapmax, arr2D[x][y]);
-    mapmin = Math.min(mapmin, arr2D[x][y]);
-  }
-}
-
-
-//AutoScale
-
-for(let x = 0; x < 512; x++) {
-  for(let y = 0; y < 256; y++) {
-    arr2D[x][y] = remap(arr2D[x][y], mapmin, mapmax, 0, 255);
-  }
-}
 render();
 
 //Simulate rain
 
-setInterval(() => {
-  const i = setInterval(() => {
-    let x = Math.floor(Math.random() * 512);
-    let y = Math.floor(Math.random() * 256);
-    particleErosion(x,y,3)
-  },20);
-
-
-  render();
-  return(() => {
-    clearInterval(i);
-  })
-
-},1000);
 
 function drawCircle(image, centerX, centerY, radius, b, a = 1) {
   if (radius === 0.5 && image[centerX] && image[centerX][centerY]) {
